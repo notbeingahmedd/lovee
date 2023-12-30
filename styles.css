@@ -1,0 +1,14 @@
+/* styles.css */
+
+.halo-glow {
+    font-size: 2em;
+    font-weight: bold;
+    font-family: 'Helvetica', sans-serif;
+    display: inline-block;
+    position: relative;
+    text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff;
+}
+
+.halo-glow::before {
+    content: "\00a0"; /* Add some space between characters */
+}

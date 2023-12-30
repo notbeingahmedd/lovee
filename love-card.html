@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Love Card</title>
+    <style>
+        :root {
+            --card-height: 65vh;
+            --card-width: calc(var(--card-height) / 1.5);
+            --neon-size: 10px;
+        }
+
+        body {
+            min-height: 100vh;
+            background: #212534;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            padding-top: 2rem;
+            padding-bottom: 2rem;
+            box-sizing: border-box;
+            margin: 0; /* Remove default body margin */
+        }
+
+        .card-container {
+            width: var(--card-width);
+            height: var(--card-height);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card {
+            width: 100%;
+            height: 100%;
+            padding: 3px;
+            position: relative;
+            border-radius: 6px;
+            font-size: 1.5em;
+            color: rgb(88 199 250 / 0%);
+            cursor: pointer;
+            font-family: 'Helvetica', sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1;
+        }
+
+        .neon-border {
+            position: absolute;
+            top: -var(--neon-size);
+            left: -var(--neon-size);
+            width: calc(100% + 2 * var(--neon-size));
+            height: calc(100% + 2 * var(--neon-size));
+            border-radius: 8px;
+            box-shadow: 0 0 10px #5ddcff, 0 0 20px #5ddcff, 0 0 30px #5ddcff;
+            animation: neonMove 2s linear infinite;
+            z-index: 0;
+        }
+
+        @keyframes neonMove {
+            0% {
+                transform: translateX(0) translateY(0);
+            }
+
+            25% {
+                transform: translateX(100%) translateY(0);
+            }
+
+            50% {
+                transform: translateX(100%) translateY(100%);
+            }
+
+            75% {
+                transform: translateX(0) translateY(100%);
+            }
+
+            100% {
+                transform: translateX(0) translateY(0);
+            }
+        }
+
+        .card:hover {
+            color: rgb(88 199 250 / 100%);
+            text-shadow: 0 0 10px #5ddcff, 0 0 20px #5ddcff, 0 0 30px #5ddcff;
+            transition: color 1s, text-shadow 1s;
+        }
+
+        .card:hover::before,
+        .card:hover::after {
+            animation: none;
+            opacity: 0;
+        }
+
+        .card::before {
+            content: " ";
+            width: 104%;
+            height: 102%;
+            border-radius: 8px;
+            background-image: linear-gradient(132deg, #5ddcff, #3c67e3 43%, #4e00c2);
+            position: absolute;
+            z-index: -1;
+            top: -1%;
+            left: -2%;
+            animation: spin 2.5s linear infinite;
+        }
+
+        .card::after {
+            position: absolute;
+            content: " ";
+            top: calc(var(--card-height) / 6);
+            left: 0;
+            right: 0;
+            z-index: -1;
+            height: 100%;
+            width: 100%;
+            margin: 0 auto;
+            transform: scale(0.8);
+            filter: blur(calc(var(--card-height) / 6));
+            background-image: linear-gradient(132deg, #5ddcff, #3c67e3 43%, #4e00c2);
+            opacity: 1;
+            transition: opacity .5s;
+            animation: spin 2.55 linear infinite;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="card-container">
+        <div class="neon-border"></div>
+        <div class="card">
+            <span style="font-weight: bold;">I LOVE YOU</span>
+        </div>
+    </div>
+</body>
+
+</html>
